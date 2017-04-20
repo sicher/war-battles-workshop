@@ -56,7 +56,7 @@ embedded_instances {
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/main/sprites.atlas\\\"\\n"
-  "default_animation: \\\"explosion\\\"\\n"
+  "default_animation: \\\"player-down\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
