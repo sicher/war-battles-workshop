@@ -1,0 +1,26 @@
+go.property("dir", vmath.vector3())
+
+function init(self)
+	self.speed = 200
+	self.life = 1
+end
+
+function update(self, dt)
+	self.life = self.life - dt
+	if self.life <= 0 then
+		go.set_rotation(vmath.quat())
+		self.speed = 0
+		msg.post("#sprite", "play_animation", { id = hash("explosion") })
+		self.life = 99		
+	end
+	
+	local pos = go.get_position()
+	pos = pos + self.dir * self.speed * dt
+	go.set_position(pos)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("animation_done") then
+		go.delete()
+	end
+end

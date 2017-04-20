@@ -4,6 +4,7 @@ function init(self)
 	
 	-- States
 	self.moving = false
+	self.firing = false
 	
 	self.input = vmath.vector3()
 	self.dir = vmath.vector3(0, 1, 0) -- up by default
@@ -26,6 +27,8 @@ local function animate(self)
 		a = "up"
 	elseif self.dir.y < 0 then
 		a = "down"
+	elseif action_id == hash("fire") and action.pressed == true then
+		self.firing = true
 	end
 	
 	if a ~= self.current_anim then
@@ -43,11 +46,20 @@ function update(self, dt)
 	end
 	
 	animate(self)
+
+	if self.firing then
+		-- fire a bullet
+		local angle = math.atan2(self.dir.y, self.dir.x)
+		local rot = vmath.quat_rotation_z(angle)
+		factory.create("#rocketfactory", go.get_position(), rot, { dir = self.dir })
+	end
 	
 	-- Reset state values
 	self.input.x = 0
 	self.input.y = 0
+
 	self.moving = false
+	self.firing = false
 end
 
 function on_message(self, message_id, message, sender)
@@ -69,6 +81,8 @@ function on_input(self, action_id, action)
 	elseif action_id == hash("right") then
 		self.input.x = 1
 		self.moving = true
+	elseif action_id == hash("fire") and action.pressed == true then
+		self.firing = true
 	end
 	
 	-- change direction if we have input
@@ -77,7 +91,6 @@ function on_input(self, action_id, action)
 		self.dir = vmath.normalize(self.input)
 	end
 end
-
 
 function on_reload(self)
     -- Add reload-handling code here
