@@ -1,0 +1,16 @@
+function init(self)
+	self.score = 0
+end
+
+function on_message(self, message_id, message, sender)
+	self.score = self.score + message.score
+	-- update score display
+	
+	local node = gui.get_node("score")
+	gui.set_text(node, self.score)	
+end
+
+function on_reload(self)
+    -- Add input-handling code here
+    -- Remove this function if not needed
+end
