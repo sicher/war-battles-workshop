@@ -8,10 +8,7 @@ end
 function update(self, dt)
 	self.life = self.life - dt
 	if self.life <= 0 then
-		go.set_rotation(vmath.quat())
-		self.speed = 0
-		msg.post("#sprite", "play_animation", { id = hash("explosion") })
-		self.life = 99		
+		msg.post("#", "explode") 
 	end
 	
 	local pos = go.get_position()
@@ -22,5 +19,15 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("animation_done") then
 		go.delete()
+	elseif message_id == hash("explode") then
+		if message.pos then
+			go.set_position(message.pos)
+		end
+		-- reset rocket rotation before playing explosion animation
+		go.set_rotation(vmath.quat())
+		-- stop movement
+		self.speed = 0
+		msg.post("#sprite", "play_animation", { id = hash("explosion") })
+		self.life = 99
 	end
 end
