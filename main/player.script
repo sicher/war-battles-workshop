@@ -1,0 +1,32 @@
+function init(self)
+	-- Post message to this script instance to recieve input from the game
+	msg.post("#", "acquire_input_focus")
+	
+	print("init is called")
+end
+
+function final(self)
+	msg.post("#", "release_input_focus")
+	
+	print("final is called")
+end
+
+function update(self, dt)
+    -- Add update-handling code here
+    -- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+    -- Add message-handling code here
+    -- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	print(action_id)
+end
+
+
+function on_reload(self)
+    -- Add reload-handling code here
+    -- Remove this function if not needed
+end
