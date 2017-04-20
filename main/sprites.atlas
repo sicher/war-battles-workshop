@@ -1,4 +1,23 @@
 animations {
+  id: "player-up"
+  images {
+    image: "/assets/player-up/1.png"
+  }
+  images {
+    image: "/assets/player-up/2.png"
+  }
+  images {
+    image: "/assets/player-up/3.png"
+  }
+  images {
+    image: "/assets/player-up/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
   id: "player-down"
   images {
     image: "/assets/player-down/1.png"
@@ -11,6 +30,44 @@ animations {
   }
   images {
     image: "/assets/player-down/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "player-left"
+  images {
+    image: "/assets/player-side/1.png"
+  }
+  images {
+    image: "/assets/player-side/2.png"
+  }
+  images {
+    image: "/assets/player-side/3.png"
+  }
+  images {
+    image: "/assets/player-side/4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 1
+  flip_vertical: 0
+}
+animations {
+  id: "player-right"
+  images {
+    image: "/assets/player-side/1.png"
+  }
+  images {
+    image: "/assets/player-side/2.png"
+  }
+  images {
+    image: "/assets/player-side/3.png"
+  }
+  images {
+    image: "/assets/player-side/4.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 10
