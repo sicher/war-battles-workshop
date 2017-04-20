@@ -1,16 +1,28 @@
-function init(self)
-	-- Add initialization code here
-	-- Remove this function if not needed
+function init(self) 
+    self.dir = vmath.vector3()
+	self.target = go.get_position()
+	self.speed = 15
 end
 
-function final(self)
-	-- Add finalization code here
-	-- Remove this function if not needed
+local function set_random_target(self)
+	local x = math.random(20, 700)
+	local y = math.random(20, 700)
+	self.target = vmath.vector3(x, y, 1)
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
+	local pos = go.get_position()
+	local d = self.target - pos
+	if vmath.length(d) > 10 then
+		self.dir = vmath.normalize(d)
+		self.dir.z = 0
+	else
+		-- plot a new random target
+		set_random_target(self)
+	end
+	
+	pos = pos + self.dir * self.speed * dt
+	go.set_position(pos)
 end
 
 function on_message(self, message_id, message, sender)
