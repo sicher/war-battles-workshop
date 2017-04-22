@@ -27,8 +27,6 @@ local function animate(self)
 		a = "up"
 	elseif self.dir.y < 0 then
 		a = "down"
-	elseif action_id == hash("fire") and action.pressed == true then
-		self.firing = true
 	end
 	
 	if a ~= self.current_anim then
